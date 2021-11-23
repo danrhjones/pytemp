@@ -17,7 +17,7 @@ while True:
     b = int((abs(math.sin(3.14*(t+120)/180)))*255)
     t = t + 3
 
-    response = requests.get("http://raspberrypi:8000/monitor")
+    response = requests.get("http://127.0.0.1:8000/monitor")
     output = response.json()
 
     lcd.setRGB(r,g,b)

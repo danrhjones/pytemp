@@ -20,14 +20,15 @@ class ThingsResource:
         resp.status = falcon.HTTP_200
         resp.text = json.dumps(get_things())
 
-app = falcon.App()
+app = falcon.App(middleware=[
+    ThingsResource()
+])
 
 things = ThingsResource()
 
 app.add_route('/monitor', things)
 
 if __name__ == '__main__':
-    with make_server('', 8000, app) as httpd:
+    with make_server('0.0.0.0', 8000, app) as httpd:
         print('Serving on port 8000...')
-
         httpd.serve_forever()
